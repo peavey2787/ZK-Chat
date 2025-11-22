@@ -1,0 +1,41 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build ZK Chat",
+			"type": "shell",
+			"command": "cargo build",
+			"args": [],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run Server",
+			"type": "shell", 
+			"command": "cargo run --bin server",
+			"args": [],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"isBackground": true
+		},
+		{
+			"label": "Open Web Client",
+			"type": "shell",
+			"command": "start",
+			"args": ["http://127.0.0.1:8080"],
+			"group": "build"
+		},
+		{
+			"label": "Start Server & Open Browser",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Run Server",
+				"Open Web Client"
+			]
+		}
+	]
+}
