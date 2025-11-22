@@ -203,8 +203,8 @@ cargo test
 
 ## Security Considerations
 
-- **Production Note**: Current implementation uses simplified proof verification
-- **Hash Function**: Uses SHA3-256 for message hashing
+- **Proof Status**: Implements real Winterfell STARK proving & verification (Prover trait, FRI, Merkle commitments). Remaining simplifications: full 60-round Poseidon hash is executed off-circuit and enforced via boundary/hash chaining assertions; timestamp monotonicity checked off-circuit; no lookup/range arguments yet.
+- **Hash Function**: Uses 60-round Poseidon (ZK-friendly) internally; SHA3-256 wording above can be updated if not used externally.
 - **Proof Size**: ZK-STARK proofs are larger than SNARKs but don't require trusted setup
 - **Replay Protection**: Timestamp monotonicity prevents message replay
 - **Sender Authentication**: Cryptographic proof prevents impersonation
@@ -226,7 +226,8 @@ cargo test
 
 ## Future Enhancements
 
-- [ ] Full ZK-STARK proof implementation (currently simplified)
+- [ ] In-circuit Poseidon round constraints (high-degree optimization; optional)
+- [ ] Lookup/range arguments for stronger in-circuit data binding
 - [ ] Persistent message storage
 - [ ] User authentication system
 - [ ] Message encryption
